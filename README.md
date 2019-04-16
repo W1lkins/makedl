@@ -17,7 +17,7 @@ Fetch `Makefile` files from Github.
 #### Via Go
 
 ```console
-$ go get -u -v github.com/w1lkins/makedl
+$ go get -u -v github.com/evalexpr/makedl
 ```
 
 ## Usage
@@ -26,6 +26,6 @@ $ go get -u -v github.com/w1lkins/makedl
 $ makedl [language]
 ```
 
-This will download `[language].Makefile` from https://github.com/W1lkins/makefiles
+This will download `[language].Makefile` from https://github.com/evalexpr/makefiles
 to the current working directory.
 

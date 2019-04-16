@@ -9,7 +9,7 @@ import (
 	"strings"
 )
 
-const makeFmt = "https://raw.githubusercontent.com/w1lkins/makefiles/master/%s.Makefile"
+const makeFmt = "https://raw.githubusercontent.com/evalexpr/makefiles/master/%s.Makefile"
 const path = "./Makefile"
 
 func main() {
