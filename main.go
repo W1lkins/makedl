@@ -31,6 +31,8 @@ func main() {
 		language = "Go"
 	case "rust":
 		language = "Rust"
+	case "flask":
+		language = "Flask"
 	}
 	log.Printf("looking for makefile for language: %s", language)
 
