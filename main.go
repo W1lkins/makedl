@@ -46,6 +46,7 @@ func main() {
 	}
 
 	bytes, err := ioutil.ReadAll(res.Body)
+	defer res.Body.Close()
 	if err != nil {
 		log.Fatal(err)
 	}
