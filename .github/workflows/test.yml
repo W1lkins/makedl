@@ -23,6 +23,10 @@ jobs:
 
     - name: Run linting
       uses: actions-contrib/golangci-lint@v1
+      env:
+        GOROOT: ""
+      with:
+        args: "run"
 
     - name: Run tests
       run: make test

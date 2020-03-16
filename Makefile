@@ -52,7 +52,7 @@ lint: ## Runs golangci-lint
 .PHONY: test
 test: ## Runs tests
 	@echo "+ $@"
-	@$(GO) test -v -tags "$(BUILDTAGS) cgo" ./cmd
+	@$(GO) test -race -v -tags "$(BUILDTAGS) cgo" ./cmd
 
 .PHONY: vet
 vet: ## Runs go vet
