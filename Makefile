@@ -1,6 +1,6 @@
 # Executables
 GO := go
-RM := /bin/rm
+RM := /bin/rm -f
 SHELL := /bin/bash
 
 # Naming and directories
@@ -45,14 +45,14 @@ fmt: ## Runs gofmt
 	@gofmt -s -l -w $(GO_SRC)
 
 .PHONY: lint
-lint: ## Runs golint
+lint: ## Runs golangci-lint
 	@echo "+ $@"
-	@golint $(GO_SRC)
+	@golangci-lint run
 
 .PHONY: test
 test: ## Runs tests
 	@echo "+ $@"
-	@$(GO) test -v -tags "$(BUILDTAGS) cgo" $(GO_SRC)
+	@$(GO) test -v -tags "$(BUILDTAGS) cgo" ./cmd
 
 .PHONY: vet
 vet: ## Runs go vet
@@ -114,10 +114,10 @@ vendor: ## Vendors dependencies
 .PHONY: clean
 clean: ## Cleanup any binaries
 	@echo "+ $@"
-	$(RM) -f $(NAME)
-	$(RM) -rf $(BUILDDIR)
+	$(RM) $(NAME)
+	$(RM) -r $(BUILDDIR)
 
 .PHONY: help
 help:
-	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | sed 's/^[^:]*://g' | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
+	@awk -F ':|##' '/^[^\t].+?:.*?##/ { printf "\033[36m%-30s\033[0m %s\n", $$1, $$NF }' $(MAKEFILE_LIST)
 
