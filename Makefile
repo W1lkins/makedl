@@ -1,7 +1,7 @@
 # Executables
 GO := go
 RM := /bin/rm -f
-SHELL := /bin/bash
+SHELL := bash
 
 # Naming and directories
 NAME := $(shell echo $${PWD\#\#*/})

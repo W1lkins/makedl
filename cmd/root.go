@@ -38,6 +38,10 @@ func download(args []string) error {
 		return errors.New("usage: makedl [lang]")
 	}
 
+	if _, err := os.Stat("./Makefile"); !os.IsNotExist(err) {
+		return errors.New("refusing to write Makefile, already exists")
+	}
+
 	language := args[0]
 	switch strings.ToLower(language) {
 	case "php":
@@ -68,13 +72,9 @@ func download(args []string) error {
 		return err
 	}
 
-	if _, err := os.Stat("./Makefile"); os.IsNotExist(err) {
-		log.Printf("writing new makefile for language: %s", language)
-		if err := ioutil.WriteFile("./Makefile", bytes, 0644); err != nil {
-			return fmt.Errorf("could not write Makefile: %w", err)
-		}
-	} else {
-		return errors.New("refusing to write Makefile, already exists")
+	log.Printf("writing new makefile for language: %s", language)
+	if err := ioutil.WriteFile("./Makefile", bytes, 0644); err != nil {
+		return fmt.Errorf("could not write Makefile: %w", err)
 	}
 
 	return nil
