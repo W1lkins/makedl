@@ -21,12 +21,7 @@ jobs:
     - name: Check out code
       uses: actions/checkout@v2
 
-    - name: Run linting
-      uses: actions-contrib/golangci-lint@v1
-      env:
-        GOROOT: ""
-      with:
-        args: "run"
+    # TODO: Add golangci-lint
 
     - name: Run tests
       run: make test
